@@ -1,0 +1,101 @@
+//* Section 4: Backroads Application
+
+//* #57. - Components:
+
+// If I have a nav bar and a hero section, it's best to place them in a separate component.  Pretty much for every kind of functionality, it's good practice to set up a separate component.
+
+//* #60. - Page Links
+
+// Original code (these are static values):
+<ul className='nav-links' id='nav-links'>
+  <li>
+    <a href='#home' className='nav-link'>
+      {' '}
+      home{' '}
+    </a>
+  </li>
+  <li>
+    <a href='#about' className='nav-link'>
+      {' '}
+      about{' '}
+    </a>
+  </li>
+  <li>
+    <a href='#services' className='nav-link'>
+      {' '}
+      services{' '}
+    </a>
+  </li>
+  <li>
+    <a href='#tours' className='nav-link'>
+      {' '}
+      tours
+    </a>
+  </li>
+</ul>;
+
+// We created a .js data file that contains the information below.
+export const pageLinks = [
+  { id: 1, href: '#home', text: 'home' },
+  { id: 2, href: '#about', text: 'about' },
+  { id: 3, href: '#services', text: 'services' },
+  { id: 4, href: '#tours', text: 'tours' },
+];
+
+// Once we import the data file into the Navbar.js file, we'll be able to refactor the code so that we can removed repeated/duplicate lines of code. The refactored code will be as followed:
+<ul className='nav-links' id='nav-links'>
+  {pageLinks.map((link) => {
+    return (
+      <li key={link.id}>
+        <a href={link.href} className='nav-link'>
+          {link.text}
+        </a>
+      </li>
+    );
+  })}
+</ul>;
+// The previous hard coded values can be removed because we're utilizing the .map() to iterate through the links contained in the data.js file. This method does not consist of destructuring.
+
+//* #61. - Social Links:
+
+// Original code (these are static values):
+<ul className='nav-icons'>
+  <li>
+    <a href='https://www.twitter.com' target='_blank' class='nav-icon'>
+      <i className='fab fa-facebook'></i>
+    </a>
+  </li>
+  <li>
+    <a href='https://www.twitter.com' target='_blank' className='nav-icon'>
+      <i className='fab fa-twitter'></i>
+    </a>
+  </li>
+  <li>
+    <a href='https://www.twitter.com' target='_blank' className='nav-icon'>
+      <i className='fab fa-squarespace'></i>
+    </a>
+  </li>
+</ul>;
+
+// data.js:
+export const socialLinks = [
+  { id: 1, href: 'https://www.twitter.com', icon: 'fab fa-twitter' },
+  { id: 1, href: 'https://www.facebook.com', icon: 'fab fa-facebook' },
+  { id: 1, href: 'https://www.squarespace.com', icon: 'fab fa-squarespace' },
+];
+
+// Refactored socialLinks code:
+<ul className='nav-icons'>
+  {socialLinks.map((link) => {
+    const { id, href, icon } = link;
+    return (
+      <li key={id}>
+        <a href={href} target='_blank' class='nav-icon'>
+          <i className={icon}></i>
+        </a>
+      </li>
+    );
+  })}
+</ul>;
+
+//* #62. - Hero and About Components:

@@ -1,4 +1,4 @@
-const about = () => {
+const About = () => {
   return (
     <section className="section" id="about">
       <div className="section-title">

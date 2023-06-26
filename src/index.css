@@ -52,6 +52,7 @@ Global Styles
 
 html {
   scroll-behavior: smooth;
+  /* ensures the scroll behavior is smooth when you click one of the links in the navbar. */
 }
 
 body {
@@ -156,6 +157,7 @@ p {
 
 .section {
   padding: 5rem 0;
+  /* navbar height */
   scroll-margin-top: 4rem;
 }
 
