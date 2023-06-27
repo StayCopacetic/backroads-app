@@ -99,3 +99,152 @@ export const socialLinks = [
 </ul>;
 
 //* #62. - Hero and About Components:
+
+// Original code: #Hero
+<section class='hero' id='home'>
+  <div class='hero-banner'>
+    <h1>continue exploring</h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae explicabo
+      debitis est autem dicta.
+    </p>
+    <a href='#tours' class='btn hero-btn'>
+      explore tours
+    </a>
+  </div>
+</section>;
+
+// Updated code:
+import aboutImg from '../images/about.jpeg';
+import Title from './Title';
+
+const Hero = () => {
+  return (
+    <section className='hero' id='home'>
+      <div className='hero-banner'>
+        <h1>Backroads App</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
+          explicabo debitis est autem dicta.
+        </p>
+        <a href='#tours' class='btn hero-btn'>
+          explore tours
+        </a>
+      </div>
+    </section>
+  );
+};
+
+// Original code: #About - fix the image (hint - just like with logo in the navbar)
+{
+  /* 
+<div class="about-img">
+  <img
+    src="./images/about.jpeg"
+    class="about-photo"
+    alt="awesome beach" />
+</div> */
+}
+
+//Updated:
+<div class='about-img'>
+  <img src='./images/about.jpeg' class='about-photo' alt='awesome beach' />
+</div>;
+
+//* #63. - Title Component:
+
+// Title.js
+const Title = ({ title, subTitle }) => {
+  return (
+    <div className='section-title'>
+      <h2>
+        {title} <span>{subTitle}</span>
+      </h2>
+    </div>
+  );
+};
+
+export default Title;
+
+// About.js
+// import
+import Title from './Title';
+
+// display
+<Title title='about' subTitle='us' />;
+
+//* #64. - Services Component:
+
+// data.js:
+export const services = [
+  {
+    id: 1,
+    icon: 'fas fa-wallet fa-fw',
+    title: 'saving money',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, officia.',
+  },
+  {
+    id: 2,
+    icon: 'fas fa-tree fa-fw',
+    title: 'endless hiking',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, officia.',
+  },
+  {
+    id: 3,
+    icon: 'fas fa-socks fa-fw',
+    title: 'amazing comfort',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, officia.',
+  },
+];
+
+// Original Services.js html:
+<section class='section services' id='services'>
+  <div class='section-title'>
+    <h2>
+      our <span>services</span>
+    </h2>
+  </div>
+  <div class='section-center services-center'>
+    <article class='service'>
+      <span class='service-icon'>
+        <i class='fas fa-wallet fa-fw'></i>
+      </span>
+      <div class='service-info'>
+        <h4 class='service-title'>saving money</h4>
+        <p class='service-text'>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores,
+          officia.
+        </p>
+      </div>
+    </article>
+  </div>
+</section>;
+
+// Updated Services.js code:
+import Title from './Title';
+import { services } from '../data';
+
+const Services = () => {
+  return (
+    <section className='section services' id='services'>
+      <Title title='our' subTitle='services' />
+
+      <div className='section-center services-center'>
+        {services.map((service) => {
+          const { id, icon, title, text } = service;
+          return (
+            <article key={id} className='service'>
+              <span className='service-icon'>
+                <i className={icon}></i>
+              </span>
+              <div className='service-info'>
+                <h4 className='service-title'>{title}</h4>
+                <p className='service-text'>{text}</p>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
+};
