@@ -23,7 +23,7 @@ const About = () => {
             unde dolor?
           </p>
           {/* eslint-disable-next-line */}
-          <a href='#' className='btn'>
+          <a href='#about' className='btn'>
             read more
           </a>
         </article>
