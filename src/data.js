@@ -1,4 +1,8 @@
 // Allows the functionality to edit the page data from one file dynamically.
+import img1 from './images/tour-1.jpeg';
+import img2 from './images/tour-2.jpeg';
+import img3 from './images/tour-3.jpeg';
+import img4 from './images/tour-4.jpeg';
 
 export const pageLinks = [
   { id: 1, href: '#home', text: 'home' },
@@ -31,5 +35,48 @@ export const services = [
     icon: 'fas fa-socks fa-fw',
     title: 'amazing comfort',
     text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, officia.',
+  },
+];
+
+export const tours = [
+  {
+    id: 1,
+    image: img1,
+    date: 'August 26th, 2020',
+    title: 'Tibet Adventure',
+    info: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque vitae tempore voluptatum maxime reprehenderit eum quod exercitationem fugit, qui corporis.',
+    location: 'China',
+    duration: '6 days',
+    price: 'from $2100',
+  },
+  {
+    id: 2,
+    image: img2,
+    date: 'October 1th, 2020',
+    title: 'Best of Java',
+    info: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque vitae tempore voluptatum maxime reprehenderit eum quod exercitationem fugit, qui corporis.',
+    location: 'Indonesia',
+    duration: '11 days',
+    price: 'from $1400',
+  },
+  {
+    id: 3,
+    image: img3,
+    date: 'September 15th, 2020',
+    title: 'Explore Hong Kong',
+    info: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque vitae tempore voluptatum maxime reprehenderit eum quod exercitationem fugit, qui corporis.',
+    location: 'Hong Kong',
+    duration: '8 days',
+    price: 'from $5000',
+  },
+  {
+    id: 4,
+    image: img4,
+    date: 'December 5th, 2019',
+    title: 'Kenya highlights',
+    info: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque vitae tempore voluptatum maxime reprehenderit eum quod exercitationem fugit, qui corporis.',
+    location: 'Kenya',
+    duration: '20 days',
+    price: 'from $3300',
   },
 ];

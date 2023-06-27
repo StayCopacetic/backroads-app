@@ -248,3 +248,253 @@ const Services = () => {
     </section>
   );
 };
+
+//* #65. - Tours Component:
+
+// Original tours.js:
+<article className='tour-card'>
+  <div className='tour-img-container'>
+    <img src={img1} class='tour-img' alt='' />
+    <p className='tour-date'>august 26th, 2020</p>
+  </div>
+  <div className='tour-info'>
+    <div className='tour-title'>
+      <h4>Tibet Adventure</h4>
+    </div>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque vitae
+      tempore voluptatum maxime reprehenderit eum quod exercitationem fugit, qui
+      corporis.
+    </p>
+    <div className='tour-footer'>
+      <p>
+        <span>
+          <i className='fas fa-map'></i>
+        </span>{' '}
+        china
+      </p>
+      <p>6 days</p>
+      <p>from $2100</p>
+    </div>
+  </div>
+</article>;
+
+// Info added to data.js. I needed to import the images from the image folder to the data.js file.
+import img1 from './images/tour-1.jpeg';
+import img2 from './images/tour-2.jpeg';
+// ...
+
+export const tours = [
+  {
+    id: 1,
+    image: img1,
+    date: 'August 26th, 2020',
+    title: 'Tibet Adventure',
+    info: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque vitae tempore voluptatum maxime reprehenderit eum quod exercitationem fugit, qui corporis.',
+    location: 'China',
+    duration: '6 days',
+    price: 'from $2100',
+  },
+  {
+    id: 2,
+    image: img2,
+    date: 'October 1th, 2020',
+    title: 'Best of Java',
+    info: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque vitae tempore voluptatum maxime reprehenderit eum quod exercitationem fugit, qui corporis.',
+    location: 'Indonesia',
+    duration: '11 days',
+    price: 'from $1400',
+  },
+];
+
+// Updated code in tours.js file:
+import Title from './Title';
+import { tours } from '../data';
+
+const Tours = () => {
+  return (
+    <section className='section' id='tours'>
+      <Title title='featured' subTitle='tours' />
+      <div className='section-center featured-center'>
+        {tours.map((tour) => {
+          const { id, image, date, title, info, location, duration, price } =
+            tour;
+          return (
+            <article key={id} className='tour-card'>
+              <div className='tour-img-container'>
+                <img src={image} className='tour-img' alt={title} />
+                <p className='tour-date'>{date}</p>
+              </div>
+              <div className='tour-info'>
+                <div className='tour-title'>
+                  <h4>{title}</h4>
+                </div>
+                <p>{info}</p>
+                <div className='tour-footer'>
+                  <p>
+                    <span>
+                      <i class='fas fa-map'></i>
+                    </span>{' '}
+                    {location}
+                  </p>
+                  <p>{duration}</p>
+                  <p>{price}</p>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
+};
+
+//* #65. - Footer Component:
+import { pageLinks, socialLinks } from '../data';
+
+const Footer = () => {
+  return (
+    <footer className='section footer'>
+      <ul className='footer-links'>
+        {pageLinks.map((link) => {
+          const { id, href, text } = link;
+          return (
+            <li key={id}>
+              <a href={href} className='footer-link'>
+                {text}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+
+      <ul className='footer-icons'>
+        {socialLinks.map((link) => {
+          const { id, href, icon } = link;
+          return (
+            <li key={id}>
+              <a
+                href={href}
+                target='_blank'
+                rel='noreferrer'
+                className='footer-icon'>
+                <i className={icon}></i>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+      {/* We were able to implement/utilize the "{new Date().getFullYear()}" js method directly into thec code below by ensuring the method is contained in curl braces. */}
+      <p className='copyright'>
+        copyright &copy; Backroads travel tours company
+        <span id='date'>{new Date().getFullYear()}</span> all rights reserved
+      </p>
+    </footer>
+  );
+};
+
+//* #67. - Alternative Approach - Page Link Component:
+import { pageLinks } from '../data';
+
+const PageLinks = ({ parentClass, itemClass }) => {
+  return (
+    <ul className={parentClass} id='nav-links'>
+      {pageLinks.map((link) => {
+        return (
+          <li key={link.id}>
+            <a href={link.href} className={itemClass}>
+              {link.text}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
+
+export default PageLinks;
+
+// Navbar.js:
+import { socialLinks } from '../data';
+import PageLinks from './PageLinks';
+
+const Navbar = () => {
+  return (
+    <nav className='navbar'>
+      <div className='nav-center'>
+        <div className='nav-header'>
+          <img src={logo} className='nav-logo' alt='backroads' />
+          <button type='button' className='nav-toggle' id='nav-toggle'>
+            <i className='fas fa-bars'></i>
+          </button>
+        </div>
+
+        <PageLinks parentClass='nav-links' itemClass='nav-link' />
+
+        <ul className='nav-icons'>
+          {socialLinks.map((link) => {
+            const { id, href, icon } = link;
+            return (
+              <li key={id}>
+                <a
+                  href={href}
+                  target='_blank'
+                  rel='noreferrer'
+                  className='nav-icon'>
+                  <i className={icon}></i>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
+
+// Footer.js:
+import PageLinks from './PageLinks';
+
+const Footer = () => {
+  return (
+    <footer className='section footer'>
+      {/* <ul className='footer-links'>
+        {pageLinks.map((link) => {
+          const { id, href, text } = link;
+          return (
+            <li key={id}>
+              <a href={href} className='footer-link'>
+                {text}
+              </a>
+            </li>
+          );
+        })}
+      </ul> */}
+      <PageLinks parentClass='footer-links' itemClass='footer-link' />
+
+      <ul className='footer-icons'>
+        {socialLinks.map((link) => {
+          const { id, href, icon } = link;
+          return (
+            <li key={id}>
+              <a
+                href={href}
+                target='_blank'
+                rel='noreferrer'
+                className='footer-icon'>
+                <i className={icon}></i>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+
+      <p className='copyright'>
+        copyright &copy; Backroads travel tours company
+        <span id='date'>{new Date().getFullYear()}</span> all rights reserved
+      </p>
+    </footer>
+  );
+};
