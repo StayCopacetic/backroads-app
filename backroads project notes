@@ -498,3 +498,36 @@ const Footer = () => {
     </footer>
   );
 };
+
+// Challenge (optional):
+
+// And at the very end, let me just repeat the main point of these last two videos. When it comes to your personal project. Yes, the amount of components and project structure is really up to you. So whatever makes the most sense for you, just go with it. A friendly suggestion, though, if you feel like file. Effectively component is getting too big. Basically, it's hard to manage the functionality and navigate around the component. It's probably a good time to split it up into smaller components. With that said, don't overdo it. Placing every element in the component is an overkill. That can actually lead to performance issues.
+
+// PageLinks.js & PageLink.js
+import { pageLinks } from '../data';
+import PageLink from './PageLink';
+
+// You can split it up into more components. It's definitely an option. The result will be exactly the same. Just be aware of the trade offs in this case. If you use component for entire list, you will have to set up and pass the props.
+
+const PageLinks = ({ parentClass, itemClass }) => {
+  return (
+    <ul className={parentClass} id='nav-links'>
+      {pageLinks.map((link) => {
+        return <PageLink key={link.id} link={link} itemClass={itemClass} />;
+      })}
+    </ul>
+  );
+};
+
+export default PageLinks;
+
+const PageLink = ({ link, itemClass }) => {
+  return (
+    <li key={link.id}>
+      <a href={link.href} className={itemClass}>
+        {link.text}
+      </a>
+    </li>
+  );
+};
+export default PageLink;
